@@ -28,7 +28,7 @@ main() {
   dos2unix -q "${TMP}/hosts"
 
   # Build the hosts file.
-  cat ./hosts.template ~/.hosts > hosts 2>/dev/null
+  cat ./hosts.template ~/.hosts | grep -v 'newrelic.com' > hosts 2>/dev/null
   sed 's/^/0.0.0.0 /' "${TMP}/hosts" >> hosts
   sed 's/^/::1 /' "${TMP}/hosts" >> hosts
 }
