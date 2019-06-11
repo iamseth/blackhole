@@ -27,12 +27,13 @@ main() {
   # convert to unix line endings
   dos2unix -q "${TMP}/hosts"
 
-  # Build the hosts file.
-  cat ./hosts.template ~/.hosts | grep -v 'newrelic.com' > hosts 2>/dev/null
-  sed 's/^/0.0.0.0 /' "${TMP}/hosts" >> hosts
-  sed 's/^/::1 /' "${TMP}/hosts" >> hosts
+  # create unbound config
+  sed 's/^/local-data: "/' "${TMP}/hosts" | sed 's/$/ A 0.0.0.0"/' > ./unbound
+  sed 's/^/local-data: "/' "${TMP}/hosts" | sed 's/$/ AAAA ::0"/' >> ./unbound
+
 }
 
 trap cleanup EXIT
 
 main "${@}"
+
