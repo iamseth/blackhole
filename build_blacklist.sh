@@ -31,6 +31,8 @@ main() {
   sed 's/^/local-data: "/' "${TMP}/hosts" | sed 's/$/ A 0.0.0.0"/' > ./unbound
   sed 's/^/local-data: "/' "${TMP}/hosts" | sed 's/$/ AAAA ::0"/' >> ./unbound
 
+  sort -u unbound > adservers
+  rm -f unbound
 }
 
 trap cleanup EXIT
