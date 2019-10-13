@@ -2,5 +2,4 @@ https://hosts-file.net/ad_servers.txt
 https://mirror1.malwaredomains.com/files/justdomains
 https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
 https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
-https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist
 https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts

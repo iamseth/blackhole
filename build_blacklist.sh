@@ -28,14 +28,17 @@ main() {
   dos2unix -q "${TMP}/hosts"
 
   # create unbound config
-  sed 's/^/local-data: "/' "${TMP}/hosts" | sed 's/$/ A 0.0.0.0"/' > ./unbound
-  sed 's/^/local-data: "/' "${TMP}/hosts" | sed 's/$/ AAAA ::0"/' >> ./unbound
-
-  sort -u unbound > adservers
-  rm -f unbound
+  :>unbound
+  for host in $(cat ${TMP}/hosts); do
+    echo "local-zone: \"${host}\" redirect" >> unbound
+    echo "local-data: \"${host} A 0.0.0.0\"" >> unbound
+    echo "local-data: \"${host} 86400 IN AAAA ::0\"" >> unbound
+  done
+  mv -f unbound adservers
 }
 
 trap cleanup EXIT
 
 main "${@}"
+
 
