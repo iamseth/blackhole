@@ -35,6 +35,7 @@ main() {
     echo "local-data: \"${host} 86400 IN AAAA ::0\"" >> unbound
   done
   mv -f unbound adservers
+  cat custom >> adservers
 }
 
 trap cleanup EXIT
