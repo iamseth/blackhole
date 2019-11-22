@@ -1,3 +1,5 @@
 local-data: "www.reddit.com A 0.0.0.0"
 local-data: "old.reddit.com A 0.0.0.0"
 local-data: "reddit.com A 0.0.0.0"
+local-data: "twitter.com A 0.0.0.0"
+local-data: "www.twitter.com.com A 0.0.0.0"
