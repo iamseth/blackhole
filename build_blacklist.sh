@@ -1,17 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
-set -u
-set -o pipefail
+set -euo pipefail
 
-
-readonly TMP=$(mktemp -d)
-
+readonly TMP="$(mktemp -d)"
 
 cleanup() {
   rm -rf "${TMP}"
 }
-
 
 main() {
   mapfile -t sources < sources.txt
@@ -24,22 +19,18 @@ main() {
   # Remove duplicates and sort.
   sort -u -o "${TMP}/hosts" "${TMP}/hosts"
 
-  # convert to unix line endings
+  # ensure unix line endings
   dos2unix -q "${TMP}/hosts"
 
   # create unbound config
-  :>unbound
-  for host in $(cat ${TMP}/hosts); do
-    echo "local-zone: \"${host}\" redirect" >> unbound
-    echo "local-data: \"${host} A 0.0.0.0\"" >> unbound
-    echo "local-data: \"${host} 86400 IN AAAA ::0\"" >> unbound
+
+  for host in $(cat "${TMP}/hosts"); do
+    echo "local-data: \"${host} A 0.0.0.0\"" >> "${TMP}/blacklist"
+    echo "local-data: \"${host} AAAA ::0\"" >> "${TMP}/blacklist"
   done
-  mv -f unbound adservers
-  cat custom >> adservers
+  mv "${TMP}/blacklist" ./
 }
 
 trap cleanup EXIT
 
 main "${@}"
-
-
