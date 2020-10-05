@@ -29,6 +29,7 @@ main() {
     echo "local-data: \"${host} AAAA ::0\"" >> "${TMP}/blacklist"
   done
   mv "${TMP}/blacklist" ./
+  cat custom.txt >> blacklist
 }
 
 trap cleanup EXIT
