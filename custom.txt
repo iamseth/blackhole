@@ -1,4 +1,14 @@
 local-data: "lobste.rs A 0.0.0.0"
 local-data: "lobste.rs AAAA ::0"
+
 local-data: "news.ycombinator.com A 0.0.0.0"
 local-data: "news.ycombinator.com AAAA ::0"
+
+local-data: "news.google.com A 0.0.0.0"
+local-data: "news.google.com AAAA ::0"
+
+local-data: "youtube.com A 0.0.0.0"
+local-data: "youtube.com AAAA ::0"
+
+local-data: "www.youtube.com A 0.0.0.0"
+local-data: "www.youtube.com AAAA ::0"
